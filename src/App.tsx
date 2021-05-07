@@ -1,19 +1,26 @@
 import React from 'react';
-import { Switch } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router';
 import Navbar from './components/Navbar/Navbar';
+import AddBook from './pages/AddBook/AddBook';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
-    <div>
-      <Switch>
-        <Navbar>
-          <NavLink to="/">Teste</NavLink>
-          <NavLink to="/">Teste</NavLink>
-          <NavLink to="/">Teste</NavLink>
-        </Navbar>
-      </Switch>
-    </div>
+    <>
+      <div>
+        <Switch>
+          <Route exact path="/" render={() => <Redirect to="/home" />} />
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/books/add">
+            <AddBook />
+          </Route>
+        </Switch>
+      </div>
+
+      <Navbar />
+    </>
   );
 }
 
