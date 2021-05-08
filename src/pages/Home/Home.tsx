@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import BookCard from '../../components/BookCard/BookCard';
+import { Book, Books } from '../../types/books';
+import { findAllBooks } from '../../services/api';
 
 const Home = () => {
-  const x = 1;
+  console.log(process.env);
 
-  console.error(x);
+  const [data, setData] = useState<Record<string, Books>>({ books: [] });
+
+  const fetchData = async (): Promise<void> => {
+    const books: Books | undefined = await findAllBooks();
+
+    if (books !== undefined) setData({ books });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -14,34 +27,20 @@ const Home = () => {
         <h1>Hi, Mehmed Al Fatih 👋</h1>
       </div>
       <main>
-        <div>
-          <img src="" alt="book cover" />
-          <div>
-            <span>book name</span>
-            <span>book title</span>
-          </div>
-        </div>
-        <div>
-          <img src="" alt="book cover" />
-          <div>
-            <span>book name</span>
-            <span>book title</span>
-          </div>
-        </div>
-        <div>
-          <img src="" alt="book cover" />
-          <div>
-            <span>book name</span>
-            <span>book title</span>
-          </div>
-        </div>
-        <div>
-          <img src="" alt="book cover" />
-          <div>
-            <span>book name</span>
-            <span>book title</span>
-          </div>
-        </div>
+        {data.books.map((book) => {
+          const { _id, name, author, description, img }: Book = book;
+
+          return (
+            <BookCard
+              key={_id}
+              _id={_id}
+              name={name}
+              author={author}
+              description={description}
+              img={img}
+            />
+          );
+        })}
       </main>
     </>
   );

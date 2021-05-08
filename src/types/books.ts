@@ -1,10 +1,9 @@
 export interface Book {
-  _id?: string;
+  _id: string;
   name: string;
   author: string;
   description: string;
-  img?: string;
-  createdAt?: string;
+  img: string;
 }
 
 export type Books = Book[];
