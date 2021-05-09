@@ -1,0 +1,39 @@
+.book-card {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  column-gap: 0;
+  row-gap: 0.5rem;
+
+  .book-card__img {
+    max-height: 150px;
+
+    img {
+      height: 100%;
+      width: 100%;
+
+      border-radius: 5px;
+    }
+  }
+
+  .book-card__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    color: var(--grey);
+
+    .book-card__info__name {
+      word-wrap: break-word;
+      font-size: 75%;
+      font-weight: 700;
+
+      margin-bottom: 5px;
+    }
+
+    .book-card__info__author {
+      word-wrap: break-word;
+      font-size: 62.5%;
+      font-weight: 800;
+    }
+  }
+}

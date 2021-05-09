@@ -1,5 +1,15 @@
+:root {
+  --background-color: #fef9f5;
+  --pink: #ff6978;
+  --darker-black: #000;
+  --black: #313131;
+  --grey: #5a5a5a;
+  --blue-outline: rgba(64, 206, 245, 0.502);
+}
+
 body,
 html {
+  background-color: var(--background-color);
   padding: 0;
   margin: 0;
   height: 100%;
@@ -9,10 +19,65 @@ html {
   font-weight: 400;
   font-size: 16px;
   font-style: normal;
+  color: var(--black);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  align-self: flex-start;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+input {
+  min-width: 0;
+
+  &[type='text']:focus,
+  &[type='search']:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--blue-outline);
+  }
+}
+
+/* unvisited link */
+a:link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: inherit;
+}
+
+/* selected link */
+a:active {
+  color: inherit;
+}
+
+.container {
+  display: flex;
+  padding: 50px 20px 10vh;
+  margin: 0 auto;
+  max-width: 1128px;
+}
+
+.container--column {
+  flex-direction: column;
 }

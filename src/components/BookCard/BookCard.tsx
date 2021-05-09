@@ -1,5 +1,6 @@
 import React from 'react';
 import { Book } from '../../types/books';
+import './BookCard.scss';
 
 const BookCard = ({ name, author, img }: Book) => {
   const getImagePath = (file: string): string => {
@@ -13,11 +14,13 @@ const BookCard = ({ name, author, img }: Book) => {
   };
 
   return (
-    <div>
-      <img src={getImagePath(img)} alt={img} />
-      <div>
-        <span>{name}</span>
-        <span>{author}</span>
+    <div className="book-card">
+      <div className="book-card__img">
+        <img src={getImagePath(img)} alt={name} width="400" height="560" />
+      </div>
+      <div className="book-card__info">
+        <span className="book-card__info__name">{name}</span>
+        <span className="book-card__info__author">{author}</span>
       </div>
     </div>
   );

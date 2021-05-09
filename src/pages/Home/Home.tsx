@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import BookCard from '../../components/BookCard/BookCard';
+import SearchBar from '../../components/SearchBar/SearchBar';
+
 import { Book, Books } from '../../types/books';
 import { findAllBooks } from '../../services/api';
 
-const Home = () => {
-  console.log(process.env);
+import './Home.scss';
+import 'font-awesome/css/font-awesome.min.css';
 
+const Home = () => {
   const [data, setData] = useState<Record<string, Books>>({ books: [] });
 
   const fetchData = async (): Promise<void> => {
@@ -20,13 +23,13 @@ const Home = () => {
 
   return (
     <>
-      <div>
-        <input type="search" placeholder="Search books" />
+      <SearchBar />
+      <div className="greeting">
+        <h1 className="greeting__message">
+          Hi, <span>Mehmed Al Fatih</span> 👋
+        </h1>
       </div>
-      <div>
-        <h1>Hi, Mehmed Al Fatih 👋</h1>
-      </div>
-      <main>
+      <main className="book__grid">
         {data.books.map((book) => {
           const { _id, name, author, description, img }: Book = book;
 

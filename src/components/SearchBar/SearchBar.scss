@@ -1,0 +1,19 @@
+.search {
+  width: 100%;
+}
+
+.search__input {
+  font-family: 'FontAwesome';
+  font-size: 112.5%;
+  width: 100%;
+  padding: 15px 20px 15px;
+  background: #fdfcfc;
+  border: none;
+  box-shadow: 5px 5px 80px rgba(212, 173, 134, 0.122623);
+  border-radius: 10px;
+
+  &::placeholder {
+    color: #dbd8d8;
+    opacity: 1;
+  }
+}

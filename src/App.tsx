@@ -7,7 +7,7 @@ import Home from './pages/Home/Home';
 function App() {
   return (
     <>
-      <div>
+      <div className="container container--column">
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/home" />} />
           <Route exact path="/home">

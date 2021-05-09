@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { BiHomeAlt } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { BsPerson } from 'react-icons/bs';
+import './Navbar.scss';
 
 // interface NavbarProps {
 //   children: React.ReactNode;
@@ -14,27 +15,35 @@ const Navbar = () => {
   console.error(x);
 
   return (
-    <nav>
+    <nav className="navbar">
       <ul>
         <li>
-          <NavLink to="/home">
-            <span>
+          <NavLink
+            className="navbar__link"
+            activeClassName="navbar__link--selected"
+            to="/home"
+          >
+            <span className="navbar__link__icon">
               <BiHomeAlt />
             </span>
             <span>Home</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/books/add">
-            <span>
+          <NavLink
+            className="navbar__link"
+            activeClassName="navbar__link--selected"
+            to="/books/add"
+          >
+            <span className="navbar__link__icon">
               <AiOutlinePlus />
             </span>
             <span>Add Book</span>
           </NavLink>
         </li>
         <li>
-          <div>
-            <span>
+          <div className="navbar__link">
+            <span className="navbar__link__icon">
               <BsPerson />
             </span>
             <span>Profile</span>

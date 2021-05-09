@@ -1,9 +1,7 @@
 import React from 'react';
 
 const AddBook = () => {
-  const x = 1;
-
-  console.error(x);
+  console.log(process.env);
 
   return (
     <>
