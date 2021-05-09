@@ -5,6 +5,7 @@
   --black: #313131;
   --grey: #5a5a5a;
   --blue-outline: rgba(64, 206, 245, 0.502);
+  --input-background: #fdfcfc;
 }
 
 body,
@@ -44,6 +45,13 @@ input {
 
   &[type='text']:focus,
   &[type='search']:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--blue-outline);
+  }
+}
+
+textarea {
+  &:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--blue-outline);
   }
