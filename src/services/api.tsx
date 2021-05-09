@@ -3,21 +3,27 @@ import { Book, Books } from '../types/books';
 
 const api: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_REST_URL,
-  timeout: 1000
+  timeout: 1000,
+  headers: {
+    common: {
+      'Content-Type': 'application/json'
+    }
+  }
 });
 
 export const createNewBook = async (book: Book): Promise<Boolean> => {
   let success: Boolean = false;
 
   try {
-    const { status }: AxiosResponse<any> = await api.post(
-      '/books',
-      JSON.stringify(book)
-    );
+    const { status }: AxiosResponse<any> = await api.post('/books', book);
 
     if (status === 200) success = true;
   } catch (err) {
-    console.error(err);
+    console.log(err.response);
+
+    throw new Error(
+      `The request (createNewBook) to the server has failed:  ${err.response.message}`
+    );
   }
 
   return success;
@@ -31,7 +37,11 @@ export const findAllBooks = async (): Promise<Books | undefined> => {
 
     books = data.body;
   } catch (err) {
-    console.error(err);
+    console.log(err.response);
+
+    throw new Error(
+      `The request (findAllBooks) to the server has failed:  ${err.response.message}`
+    );
   }
 
   return books;
@@ -49,7 +59,11 @@ export const findOneBook = async (
 
     [book = undefined] = data.body;
   } catch (err) {
-    console.error(err);
+    console.log(err.response);
+
+    throw new Error(
+      `The request (findOneBook) to the server has failed: ${err.response.message}`
+    );
   }
 
   return book;

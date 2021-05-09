@@ -2,7 +2,7 @@ import React from 'react';
 import { Book } from '../../types/books';
 import './BookCard.scss';
 
-const BookCard = ({ name, author, img }: Book) => {
+const BookCard = ({ name, author, img = '' }: Book) => {
   const getImagePath = (file: string): string => {
     const url: string =
       process.env.REACT_APP_IMG_BASE_URL || `${process.env.PUBLIC_URL}/covers/`;
