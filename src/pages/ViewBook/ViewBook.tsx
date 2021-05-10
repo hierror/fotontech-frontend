@@ -5,7 +5,7 @@ import { FiArrowLeft, FiUpload } from 'react-icons/fi';
 import { BsBook } from 'react-icons/bs';
 import { FaHeadphones } from 'react-icons/fa';
 import { findOneBook } from '../../services/api';
-import { Book } from '../../types/books';
+import { Book } from '../../types/Books';
 import './ViewBook.scss';
 import { getImagePath } from '../../utils';
 

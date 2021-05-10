@@ -1,5 +1,5 @@
 import React from 'react';
-import { Book } from '../../types/books';
+import { Book } from '../../types/Books';
 import { getImagePath } from '../../utils';
 import './BookCard.scss';
 

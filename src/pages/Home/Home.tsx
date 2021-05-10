@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import BookCard from '../../components/BookCard/BookCard';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
-import { Book, Books } from '../../types/books';
+import { Book, Books } from '../../types/Books';
 import { findAllBooks } from '../../services/api';
 
 import './Home.scss';

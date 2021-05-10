@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { Book, Books } from '../types/books';
+import { Book, Books } from '../types/Books';
 
 const api: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_REST_URL,
@@ -30,11 +30,11 @@ export const createNewBook = async (book: Book): Promise<Boolean> => {
   return success;
 };
 
-export const findAllBooks = async (): Promise<Books | undefined> => {
+export const findAllBooks = async () => {
   let books: Books | undefined;
 
   try {
-    const { data }: AxiosResponse<any> = await api.get('/books');
+    const { data }: AxiosResponse<any> = await api.get<Books>('/books');
 
     books = data.body;
   } catch (err) {
@@ -55,7 +55,9 @@ export const findOneBook = async (
   let book: Book | undefined;
 
   try {
-    const { data }: AxiosResponse<any> = await api.get(`/books/${bookId}`);
+    const { data }: AxiosResponse<any> = await api.get<Book>(
+      `/books/${bookId}`
+    );
 
     [book = undefined] = data.body;
   } catch (err) {
