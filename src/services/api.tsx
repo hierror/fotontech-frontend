@@ -19,6 +19,7 @@ export const createNewBook = async (book: Book): Promise<Boolean> => {
 
     if (status === 200) success = true;
   } catch (err) {
+    console.log(err);
     console.log(err.response);
 
     throw new Error(
@@ -37,6 +38,7 @@ export const findAllBooks = async (): Promise<Books | undefined> => {
 
     books = data.body;
   } catch (err) {
+    console.log(err);
     console.log(err.response);
 
     throw new Error(
@@ -55,10 +57,9 @@ export const findOneBook = async (
   try {
     const { data }: AxiosResponse<any> = await api.get(`/books/${bookId}`);
 
-    // if (data.body.length === 0) return undefined;
-
     [book = undefined] = data.body;
   } catch (err) {
+    console.log(err);
     console.log(err.response);
 
     throw new Error(

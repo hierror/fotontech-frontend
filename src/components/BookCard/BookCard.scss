@@ -5,7 +5,7 @@
   row-gap: 0.5rem;
 
   .book-card__img {
-    max-height: 150px;
+    height: var(--book-height);
 
     img {
       height: 100%;

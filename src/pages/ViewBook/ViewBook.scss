@@ -1,0 +1,98 @@
+.book-hero {
+  width: 100%;
+  max-height: 37.5vh;
+
+  background: url('../../assets/img/blue-ball.png') 22.5% 50% no-repeat,
+    url('../../assets/img/pink-ball.png') 10% 42.5% no-repeat,
+    url('../../assets/img/purple-circle.png') 73% 33.5% no-repeat,
+    url('../../assets/img/fingerprint.png') 73% 90% no-repeat,
+    url('../../assets/img/bigger-fingerprint.png') 100% 0 no-repeat;
+
+  background-color: #fff6e5;
+
+  border-radius: 0 0 75px 0;
+
+  .book-hero__return {
+    align-self: flex-start;
+    font-size: 1.5rem;
+
+    margin-bottom: 0.5em;
+  }
+
+  .book-hero__img {
+    align-self: center;
+    width: 20vh;
+
+    img {
+      box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.book__name {
+  font-size: 1.5rem;
+
+  margin-top: 2.5vh;
+}
+
+.book__author {
+  font-size: 1rem;
+  color: var(--pink);
+
+  margin-top: 0.4em;
+}
+
+.book__description {
+  word-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 150%;
+  color: rgba(49, 49, 49, 0.6);
+
+  margin-top: 1em;
+  padding-bottom: 2rem;
+}
+
+.interactions-wrapper {
+  position: fixed;
+  width: 100%;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 20px;
+  max-width: 376px;
+  margin: 0 auto;
+}
+
+.interactions {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: rgba(49, 49, 49, 0.3);
+
+  width: 100%;
+  padding: 1.5em;
+  background-color: #fff;
+  box-shadow: 3px 3px 23px rgba(107, 103, 70, 0.125901);
+  border-radius: 2px;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .interactions__link {
+    display: flex;
+    align-items: center;
+
+    .interactions__link__icon {
+      display: flex;
+      align-items: center;
+
+      font-size: 1rem;
+    }
+
+    span + span {
+      color: var(--black);
+      margin-left: 0.5em;
+    }
+  }
+}

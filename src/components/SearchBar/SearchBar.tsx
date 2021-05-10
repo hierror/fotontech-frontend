@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { ChangeEventHandler } from 'react';
 import './SearchBar.scss';
 
-const SearchBar = () => (
+interface SearchProps {
+  value: string;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+}
+
+const SearchBar = ({ value, handleChange }: SearchProps) => (
   <div className="search">
     <input
       className="search__input"
       type="search"
       placeholder="&#xf002; Search books"
+      value={value}
+      onChange={handleChange}
     />
   </div>
 );

@@ -1,5 +1,7 @@
 :root {
-  --background-color: #fef9f5;
+  --book-width: 30%;
+  --book-height: 9em;
+  --background-color: #fffcf9;
   --pink: #ff6978;
   --darker-black: #000;
   --black: #313131;
@@ -33,6 +35,12 @@ img {
   max-width: 100%;
   height: auto;
   align-self: flex-start;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 h1,
@@ -81,11 +89,32 @@ a:active {
 
 .container {
   display: flex;
-  padding: 50px 20px 10vh;
+  padding: 50px 20px;
   margin: 0 auto;
-  max-width: 1128px;
+  width: 100%;
 }
 
 .container--column {
   flex-direction: column;
+}
+
+@media only screen and (min-width: 425px) {
+  :root {
+    --book-width: 20%;
+    --book-height: 8em;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --book-width: 10%;
+    --book-height: 9.5em;
+  }
+}
+
+@media only screen and (min-width: 1224px) {
+  :root {
+    --book-width: 10%;
+    --book-height: 12em;
+  }
 }

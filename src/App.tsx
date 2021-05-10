@@ -1,26 +1,23 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router';
-import Navbar from './components/Navbar/Navbar';
-import AddBook from './pages/AddBook/AddBook';
 import Home from './pages/Home/Home';
+import AddBook from './pages/AddBook/AddBook';
+import ViewBook from './pages/ViewBook/ViewBook';
 
 function App() {
   return (
-    <>
-      <div className="container container--column">
-        <Switch>
-          <Route exact path="/" render={() => <Redirect to="/home" />} />
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/books/add">
-            <AddBook />
-          </Route>
-        </Switch>
-      </div>
-
-      <Navbar />
-    </>
+    <Switch>
+      <Route exact path="/" render={() => <Redirect to="/home" />} />
+      <Route exact path="/home">
+        <Home />
+      </Route>
+      <Route exact path="/books/add">
+        <AddBook />
+      </Route>
+      <Route path="/books/:book_id">
+        <ViewBook />
+      </Route>
+    </Switch>
   );
 }
 
