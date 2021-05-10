@@ -11,63 +11,36 @@ const api: AxiosInstance = axios.create({
   }
 });
 
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.log(error.toJSON());
+
+    return Promise.reject(error.message);
+  }
+);
+
 export const createNewBook = async (book: Book): Promise<Boolean> => {
   let success: Boolean = false;
+  const { status }: AxiosResponse<any> = await api.post('/books', book);
 
-  try {
-    const { status }: AxiosResponse<any> = await api.post('/books', book);
-
-    if (status === 200) success = true;
-  } catch (err) {
-    console.log(err);
-    console.log(err.response);
-
-    throw new Error(
-      `The request (createNewBook) to the server has failed:  ${err.response.message}`
-    );
-  }
+  if (status === 200) success = true;
 
   return success;
 };
 
 export const findAllBooks = async () => {
-  let books: Books | undefined;
+  const { data }: AxiosResponse<any> = await api.get<Books>('/books');
 
-  try {
-    const { data }: AxiosResponse<any> = await api.get<Books>('/books');
-
-    books = data.body;
-  } catch (err) {
-    console.log(err);
-    console.log(err.response);
-
-    throw new Error(
-      `The request (findAllBooks) to the server has failed:  ${err.response.message}`
-    );
-  }
+  const books: Books = data.body;
 
   return books;
 };
 
-export const findOneBook = async (
-  bookId: string
-): Promise<Book | undefined> => {
-  let book: Book | undefined;
+export const findOneBook = async (bookId: string) => {
+  const { data }: AxiosResponse<any> = await api.get<Book>(`/books/${bookId}`);
 
-  try {
-    const { data }: AxiosResponse<any> = await api.get<Book>(
-      `/books/${bookId}`
-    );
-
-    [book = undefined] = data.body;
-  } catch (err) {
-    console.log(err);
-    console.log(err.response);
-
-    throw new Error(
-      `The request (findOneBook) to the server has failed: ${err.response.message}`
-    );
-  }
+  const [book]: Books = data.body;
 
   return book;
 };

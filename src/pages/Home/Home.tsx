@@ -1,21 +1,19 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaSadCry } from 'react-icons/fa';
 import Navbar from '../../components/Navbar/Navbar';
 import BookCard from '../../components/BookCard/BookCard';
 import SearchBar from '../../components/SearchBar/SearchBar';
-
 import { Book, Books } from '../../types/Books';
 import { findAllBooks } from '../../services/api';
-
 import './Home.scss';
 import 'font-awesome/css/font-awesome.min.css';
 
 const Home = () => {
+  const [fetchError, setFetchError] = useState<Boolean>(false);
   const [data, setData] = useState<Record<string, Books>>({ books: [] });
   const [books, setBooks] = useState<Books>([]);
   const [searchValue, setSearchValue] = useState<string>('');
-
-  console.log('render');
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
@@ -30,7 +28,13 @@ const Home = () => {
   };
 
   const fetchData = async (): Promise<void> => {
-    const library: Books | undefined = await findAllBooks();
+    let library: Books | undefined;
+
+    try {
+      library = await findAllBooks();
+    } catch (err) {
+      setFetchError(true);
+    }
 
     if (library !== undefined) setData({ books: library });
   };
@@ -50,29 +54,42 @@ const Home = () => {
   return (
     <>
       <div className="container container--column">
-        <SearchBar value={searchValue} handleChange={handleSearchChange} />
-        <div className="greeting">
-          <h1 className="greeting__message">
-            Hi, <span>Mehmed Al Fatih</span> 👋
-          </h1>
-        </div>
-        <main className="book__grid">
-          {books.map((book) => {
-            const { _id, name, author, description, img }: Book = book;
+        <header>
+          <SearchBar value={searchValue} handleChange={handleSearchChange} />
+          <div className="greeting">
+            <h1 className="greeting__message">
+              Hi, <span>Mehmed Al Fatih</span> 👋
+            </h1>
+          </div>
+        </header>
+        {fetchError ? (
+          <div className="book__error">
+            <p className="book__error__message">
+              We couldn&apos;t find the books{' '}
+              <span>
+                <FaSadCry />
+              </span>
+            </p>
+          </div>
+        ) : (
+          <main className="book__grid">
+            {books.map((book) => {
+              const { _id, name, author, description, img }: Book = book;
 
-            return (
-              <Link key={_id} to={`/books/${_id}`}>
-                <BookCard
-                  _id={_id}
-                  name={name}
-                  author={author}
-                  description={description}
-                  img={img}
-                />
-              </Link>
-            );
-          })}
-        </main>
+              return (
+                <Link key={_id} to={`/books/${_id}`}>
+                  <BookCard
+                    _id={_id}
+                    name={name}
+                    author={author}
+                    description={description}
+                    img={img}
+                  />
+                </Link>
+              );
+            })}
+          </main>
+        )}
       </div>
       <Navbar />
     </>
