@@ -24,9 +24,19 @@ const ViewBook = () => {
   });
 
   const fetchData = async (): Promise<void> => {
-    const data: Book | undefined = await findOneBook(bookId);
+    let newBook: Book = {
+      name: 'Livro desconhecido',
+      author: 'Autor desconhecido',
+      description: 'Sem descrição'
+    };
 
-    if (data !== undefined) setBook(data);
+    try {
+      newBook = await findOneBook(bookId);
+    } catch (err) {
+      setBook(newBook);
+    }
+
+    setBook(newBook);
   };
 
   useEffect(() => {
