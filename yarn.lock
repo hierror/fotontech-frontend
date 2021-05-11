@@ -1860,13 +1860,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-icons@^3.0.0":
-  "integrity" "sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg=="
-  "resolved" "https://registry.npmjs.org/@types/react-icons/-/react-icons-3.0.0.tgz"
-  "version" "3.0.0"
-  dependencies:
-    "react-icons" "*"
-
 "@types/react-router-dom@^5.1.7":
   "integrity" "sha512-D5mHD6TbdV/DNHYsnwBTv+y73ei+mMjrkGrla86HthE4/PVvL1J94Bu3qABU+COXzpL23T1EZapVVpwHuBXiUg=="
   "resolved" "https://registry.npmjs.org/@types/react-router-dom/-/react-router-dom-5.1.7.tgz"
@@ -9686,7 +9679,7 @@
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.4.2.tgz"
   "version" "7.4.2"
 
-"react-icons@*", "react-icons@^4.2.0":
+"react-icons@^4.2.0":
   "integrity" "sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ=="
   "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.2.0.tgz"
   "version" "4.2.0"
