@@ -30,9 +30,7 @@ const AddBook = () => {
     handleSubmit
   } = useForm<FormData>();
   const onSubmit = (data: FormData) => {
-    createNewBook(data);
-
-    history.push('/home');
+    createNewBook(data).then(() => history.push('/home'));
   };
 
   return (
