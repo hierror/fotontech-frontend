@@ -7,7 +7,6 @@ import ViewBook from './pages/ViewBook/ViewBook';
 function App() {
   return (
     <Switch>
-      <Route exact path="/" render={() => <Redirect to="/home" />} />
       <Route exact path="/home">
         <Home />
       </Route>
@@ -17,6 +16,7 @@ function App() {
       <Route path="/books/:book_id">
         <ViewBook />
       </Route>
+      <Route exact render={() => <Redirect to="/home" />} />
     </Switch>
   );
 }
