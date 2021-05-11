@@ -27,7 +27,7 @@ npm install
 
 # Environment variables
 
-After the installation, grab a copy of `.env.example` and rename it to `.env`. If you wish, set the port to a value different from default. `REACT_APP_IMG_BASE_URL` refers to the URL of the server where the book cover images are stored. Since we don't have any server like this one, we can leave it blank and the `public/covers/` folder will be used. `REACT_APP_API_REST_URL` is the URL of our API rest.
+After the installation, grab a copy of `.env.example` and rename it to `.env`. If you wish, set the port to a value different from default. `REACT_APP_IMG_BASE_URL` refers to the URL of the server where the book cover images are stored. Since we don't have any server like this one, we can leave it blank and the `public/covers/` folder will be used. `REACT_APP_API_REST_URL` is the URL of our API Rest.
 
 ## Usage
 
