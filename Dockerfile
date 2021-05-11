@@ -1,3 +1,3 @@
-FROM nginx:stable-alpine
+FROM httpd:2.4
 
-COPY build /usr/share/nginx/html
+COPY ./build/ /usr/local/apache2/htdocs/
