@@ -27,7 +27,8 @@
         "build": "react-scripts build",
         "eject": "react-scripts eject",
         "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-        "lint": "eslint . --ext .ts"
+        "lint": "eslint . --ext .ts",
+        "deploy": "npm run build && mv build/index.html build/200.html && surge build"
     },
     "browserslist": {
         "production": [
@@ -56,6 +57,7 @@
         "eslint-plugin-prettier": "^3.4.0",
         "eslint-plugin-react": "^7.22.0",
         "eslint-plugin-react-hooks": "^4.2.0",
-        "prettier": "^2.2.1"
+        "prettier": "^2.2.1",
+        "surge": "^0.23.0"
     }
 }
