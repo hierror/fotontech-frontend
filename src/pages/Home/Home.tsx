@@ -108,34 +108,36 @@ const Home = () => {
               </p>
             </div>
           ) : (
-            <div className="library__grid">
-              {library.slice(0, data.index).map((book) => {
-                const { _id, name, author, description, img }: Book = book;
+            <>
+              <div className="library__grid">
+                {library.slice(0, data.index).map((book) => {
+                  const { _id, name, author, description, img }: Book = book;
 
-                return (
-                  <Link key={_id} to={`/books/${_id}`}>
-                    <BookCard
-                      _id={_id}
-                      name={name}
-                      author={author}
-                      description={description}
-                      img={img}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-          {data.index >= data.books.length || searchValue ? (
-            ''
-          ) : (
-            <button
-              className="library__button"
-              type="button"
-              onClick={loadMoreBooks}
-            >
-              Load more
-            </button>
+                  return (
+                    <Link key={_id} to={`/books/${_id}`}>
+                      <BookCard
+                        _id={_id}
+                        name={name}
+                        author={author}
+                        description={description}
+                        img={img}
+                      />
+                    </Link>
+                  );
+                })}
+              </div>
+              {data.index >= data.books.length || searchValue ? (
+                ''
+              ) : (
+                <button
+                  className="library__button"
+                  type="button"
+                  onClick={loadMoreBooks}
+                >
+                  Load more
+                </button>
+              )}
+            </>
           )}
         </main>
       </div>
