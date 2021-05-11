@@ -11,7 +11,7 @@ const SearchBar = ({ value, handleChange }: SearchProps) => (
     <input
       className="search__input"
       type="search"
-      placeholder="&#xf002; Search books"
+      placeholder="&#xf002; Search books by name or author"
       value={value}
       onChange={handleChange}
     />

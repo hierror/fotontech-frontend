@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, ChangeEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSadCry } from 'react-icons/fa';
 import Navbar from '../../components/Navbar/Navbar';
@@ -9,11 +9,35 @@ import { findAllBooks } from '../../services/api';
 import './Home.scss';
 import 'font-awesome/css/font-awesome.min.css';
 
+const BOOK_INC: number = 6;
+
+interface Data {
+  books: Books;
+  index: number;
+  error: boolean;
+}
+
 const Home = () => {
-  const [fetchError, setFetchError] = useState<Boolean>(false);
-  const [data, setData] = useState<Record<string, Books>>({ books: [] });
-  const [books, setBooks] = useState<Books>([]);
+  const [data, setData] = useState<Data>({
+    books: [],
+    index: -1,
+    error: false
+  });
+  const [library, setLibrary] = useState<Books>([]);
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const loadMoreBooks = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
+    const numberOfBooks = data.index + BOOK_INC;
+    const len = data.books.length;
+
+    setData({
+      books: data.books,
+      index: numberOfBooks < len ? numberOfBooks : len,
+      error: false
+    });
+  };
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
@@ -24,28 +48,39 @@ const Home = () => {
   const filterSearch = (arr: Books, str: string): Books => {
     const regex: RegExp = new RegExp(str, 'i');
 
-    return arr.filter((curr) => regex.test(curr.name));
+    return arr.filter(
+      (curr) => regex.test(curr.name) || regex.test(curr.author)
+    );
   };
 
   const fetchData = async (): Promise<void> => {
-    let library: Books | undefined;
+    let newBooks: Books | undefined;
 
     try {
-      library = await findAllBooks();
+      newBooks = await findAllBooks();
     } catch (err) {
-      setFetchError(true);
+      setData({
+        books: data.books,
+        index: data.index,
+        error: true
+      });
     }
 
-    if (library !== undefined) setData({ books: library });
+    if (newBooks)
+      setData({
+        books: newBooks,
+        index: 6,
+        error: false
+      });
   };
 
   useEffect(() => {
     if (searchValue === '') {
-      setBooks(data.books);
+      setLibrary(data.books);
     } else {
-      setBooks(filterSearch(data.books, searchValue));
+      setLibrary(filterSearch(data.books, searchValue));
     }
-  }, [searchValue, data]);
+  }, [searchValue, data.books]);
 
   useEffect(() => {
     fetchData();
@@ -62,34 +97,47 @@ const Home = () => {
             </h1>
           </div>
         </header>
-        {fetchError ? (
-          <div className="book__error">
-            <p className="book__error__message">
-              We couldn&apos;t find the books{' '}
-              <span>
-                <FaSadCry />
-              </span>
-            </p>
-          </div>
-        ) : (
-          <main className="book__grid">
-            {books.map((book) => {
-              const { _id, name, author, description, img }: Book = book;
+        <main className="library">
+          {data.error ? (
+            <div className="library__error">
+              <p className="library__error__message">
+                We couldn&apos;t find the books{' '}
+                <span>
+                  <FaSadCry />
+                </span>
+              </p>
+            </div>
+          ) : (
+            <div className="library__grid">
+              {library.slice(0, data.index).map((book) => {
+                const { _id, name, author, description, img }: Book = book;
 
-              return (
-                <Link key={_id} to={`/books/${_id}`}>
-                  <BookCard
-                    _id={_id}
-                    name={name}
-                    author={author}
-                    description={description}
-                    img={img}
-                  />
-                </Link>
-              );
-            })}
-          </main>
-        )}
+                return (
+                  <Link key={_id} to={`/books/${_id}`}>
+                    <BookCard
+                      _id={_id}
+                      name={name}
+                      author={author}
+                      description={description}
+                      img={img}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+          {data.index >= data.books.length || searchValue ? (
+            ''
+          ) : (
+            <button
+              className="library__button"
+              type="button"
+              onClick={loadMoreBooks}
+            >
+              Load more
+            </button>
+          )}
+        </main>
       </div>
       <Navbar />
     </>
